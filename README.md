@@ -4,20 +4,20 @@
 ### Pipeline modular para entrenamiento y tracking de modelos de clasificación binaria sobre el dataset QSAR Biodegradation (OpenML ID: 1494).
 ---
 
-## Características
+## ✨ Características
 
 - Regresión Logística con grid search y registro manual en MLflow
 - Red Neuronal (TensorFlow/Keras) con autologging
 - Interpretación de resultados con Gemini
 - Runs anidados para experimentación avanzada
 
-## Instalación
+## 📄 Instalación
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Configuración
+## ⚙️ Configuración
 
 Para habilitar la interpretación con Gemini, configure la variable de entorno:
 
@@ -27,7 +27,7 @@ export GOOGLE_API_KEY="your-api-key-here"
 
 Si no se configura, el pipeline continuará sin análisis LLM.
 
-## Uso
+## 🧑‍💻 Uso
 
 ### Ejecución básica
 
@@ -61,8 +61,7 @@ Artefactos generados:
 - `keras_config.txt`
 - `gemini_insights.txt`
 
-## Estructura del Proyecto
-
+## 🧱 Estructura del proyecto
 ```
 qsar_biodeg/
 ├── main.py
@@ -70,14 +69,21 @@ qsar_biodeg/
 ├── README.md
 └── src/
    └── qsar_biodeg/
-      ├── config.py
-      ├── data.py
-      ├── metrics.py
-      ├── tracking.py
-      ├── pipeline.py
+      ├── config.py         # constantes, hiperparámetros, API key
+      ├── data.py           # carga OpenML, split, escalado
+      ├── metrics.py        # métricas y figuras (sin escribir a disco)
+      ├── tracking.py       # helpers MLflow (runs, log_x, autolog, init)
+      ├── pipeline.py       # orquestación
       ├── models/
-      │  ├── logistic.py
-      │  └── keras_mlp.py
+      │  ├── logistic.py    # grid + logging manual
+      │  └── keras_mlp.py   # Keras + autolog, métricas test
       └── llm/
-         └── genai_client.py
+         └── genai_client.py # Gemini (google genai)
 ```
+
+## 📚 Referencias
+- Dataset: [https://www.openml.org/d/1494](https://www.openml.org/d/1494)
+- MLflow: [https://mlflow.org/docs/latest/quickstart.html](https://mlflow.org/docs/latest/quickstart.html) · [https://mlflow.org/docs/latest/tracking.html](https://mlflow.org/docs/latest/tracking.html)
+- Keras: [https://www.tensorflow.org/guide/keras/sequential_model](https://www.tensorflow.org/guide/keras/sequential_model) · [https://www.tensorflow.org/api_docs/python/tf/keras/Model#save](https://www.tensorflow.org/api_docs/python/tf/keras/Model#save)
+- Google AI Studio / SDK `google genai` (Gemini)
+
