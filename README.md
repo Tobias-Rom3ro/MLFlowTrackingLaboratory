@@ -1,6 +1,9 @@
 # 🧪 QSAR Biodegradation MLflow Pipeline
+---
+## Autores: Tobías Romero (2021214011) y Jenifer Roa (20222140xx)
 
 Pipeline modular para entrenamiento y tracking de modelos de clasificación binaria sobre el dataset QSAR Biodegradation (OpenML ID: 1494).
+---
 
 ## Características
 
