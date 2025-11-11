@@ -1,6 +1,12 @@
 import os
+import warnings
+warnings.filterwarnings('ignore')
+
 import numpy as np
 import tensorflow as tf
+
+tf.get_logger().setLevel('ERROR')
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score
 from tensorflow.keras.models import Sequential
@@ -14,7 +20,7 @@ from .data import (
 )
 from .models import grid_search_logreg, train_and_log_keras
 from .llm import generate_insights
-from .tracking import set_experiment, run, log_artifact, enable_global_autolog, init_tracking
+from .tracking import set_experiment, run, log_artifact, enable_global_autolog
 
 
 def main(full: bool = False):
@@ -31,7 +37,6 @@ def main(full: bool = False):
     X_train, X_test, y_train, y_test, scaler = split_and_scale(X, y)
     print(f"[INFO] Train: {X_train.shape[0]}, Test: {X_test.shape[0]}")
 
-    init_tracking()
     set_experiment(EXPERIMENT_NAME)
     print(f"[INFO] Experimento MLflow: {EXPERIMENT_NAME}")
 

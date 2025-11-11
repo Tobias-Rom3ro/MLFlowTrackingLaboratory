@@ -14,15 +14,48 @@ def load_qsar_biodeg() -> pd.DataFrame:
 
 
 def prepare_data(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
-    target_col = "Class" if "Class" in df.columns else "class"
+    possible_targets = ["Class", "class", "target"]
+    target_col = None
+
+    for col in possible_targets:
+        if col in df.columns:
+            target_col = col
+            break
+
+    if target_col is None:
+        raise ValueError(f"No se encontró columna objetivo. Columnas disponibles: {df.columns.tolist()}")
+
     X = df.drop(columns=[target_col])
-    y = df[target_col].map({'NRB': 0, 'RB': 1})
+    y_raw = df[target_col]
+
+    unique_values = y_raw.unique()
+
+    mapping_options = [
+        {'NRB': 0, 'RB': 1},
+        {'1': 0, '2': 1},
+        {1: 0, 2: 1},
+        {'0': 0, '1': 1},
+        {0: 0, 1: 1}
+    ]
+
+    y = None
+    for mapping in mapping_options:
+        y_temp = y_raw.map(mapping)
+        if not y_temp.isna().any():
+            y = y_temp
+            break
+
+    if y is None or y.isna().any():
+        raise ValueError(f"No se pudo mapear la columna {target_col}. Valores encontrados: {unique_values}")
+
     return X, y
 
 
 def split_and_scale(X: pd.DataFrame, y: pd.Series, test_size: float = 0.2):
+    y_array = y.astype(int).values
+
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=test_size, stratify=y, random_state=RANDOM_STATE
+        X, y_array, test_size=test_size, stratify=y_array, random_state=RANDOM_STATE
     )
 
     scaler = StandardScaler()

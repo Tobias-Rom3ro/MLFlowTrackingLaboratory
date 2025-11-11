@@ -55,8 +55,7 @@ def train_and_log_keras(
         y_pred = (y_pred_prob > 0.5).astype(int).flatten()
 
         metrics = compute_metrics(y_test, y_pred)
-        test_metrics = {f"test_{k}": v for k, v in metrics.items()}
-        log_metrics(test_metrics)
+        log_metrics(metrics)
 
         cm_path = "confusion_matrix_keras.png"
         save_confusion_matrix_png(y_test, y_pred, cm_path)

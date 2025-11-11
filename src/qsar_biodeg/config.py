@@ -1,11 +1,12 @@
 import os
 from dataclasses import dataclass
 from typing import Tuple
-
+import dotenv
 
 RANDOM_STATE = 42
 EXPERIMENT_NAME = "qsar_biodeg_experiments"
 GENAI_MODEL = "gemini-2.5-flash"
+dotenv.load_dotenv()
 
 
 @dataclass
@@ -26,4 +27,4 @@ class KerasConfig:
 
 
 def get_genai_api_key() -> str:
-    return os.getenv("GOOGLE_API_KEY", "")
+    return os.getenv("GOOGLE_API_KEY")

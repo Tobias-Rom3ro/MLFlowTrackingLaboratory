@@ -3,12 +3,6 @@ import mlflow.tensorflow
 from contextlib import contextmanager
 from typing import Dict, Optional
 
-def init_tracking(uri: str | None = None):
-    import os, mlflow
-    if uri is None:
-        uri = os.getenv("MLFLOW_TRACKING_URI", "http://127.0.0.1:5001")
-    mlflow.set_tracking_uri(uri)
-
 
 def set_experiment(name: str):
     mlflow.set_experiment(name)
@@ -30,6 +24,10 @@ def log_params(params: Dict[str, any]):
 def log_metrics(metrics: Dict[str, float]):
     for key, value in metrics.items():
         mlflow.log_metric(key, value)
+
+
+def log_metric(key: str, value: float):
+    mlflow.log_metric(key, value)
 
 
 def log_artifact(path: str):
