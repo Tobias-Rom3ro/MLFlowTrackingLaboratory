@@ -1,0 +1,1 @@
+API key de Gemini no disponible. Configure GOOGLE_API_KEY para obtener insights.

@@ -1,0 +1,13 @@
+Aquí tienes la análisis breve de los resultados:
+
+1.  **¿Qué significa un F1-score de 0.7943 considerando el balance de clases en este dataset?**
+    Un F1-score de 0.7943 indica que el modelo logra un buen equilibrio entre precisión y recall. Dado que el F1-score es particularmente útil en datasets con **clases desbalanceadas** (como a menudo ocurre en QSAR Biodegradation, donde una clase puede ser menos frecuente), un valor cercano a 0.8 sugiere que el modelo no solo tiene una alta tasa de acierto general (como indica la accuracy), sino que también es efectivo en identificar la clase minoritaria sin generar demasiados falsos positivos o falsos negativos para esa clase. Es un buen indicador de rendimiento robusto ante el desbalance.
+
+2.  **¿Por qué la red neuronal podría tener un recall de 0.7465 comparado con 0.7887 de regresión logística?**
+    Un recall más bajo para la red neuronal (0.7465 vs 0.7887) significa que la red neuronal **identificó una menor proporción de los casos positivos reales**. Es decir, tuvo más **falsos negativos**. Esto podría deberse a:
+    *   **Umbral de clasificación:** El umbral por defecto (e.g., 0.5) usado para clasificar las predicciones de probabilidad de la red neuronal podría ser demasiado alto, haciendo que el modelo sea más "conservador" al predecir la clase positiva.
+    *   **Sensibilidad a clases desbalanceadas:** Si el dataset es desbalanceado y la red neuronal no fue optimizada para ello, podría tener una tendencia a predecir la clase mayoritaria, resultando en más falsos negativos para la clase minoritaria (positiva).
+
+3.  **Sugiere dos mejoras concretas para optimizar estos modelos en este dataset.**
+    1.  **Manejo del Desbalance de Clases:** Implementar técnicas para abordar el posible desbalance de clases. Esto podría incluir **sobremuestreo de la clase minoritaria** (e.g., con SMOTE) o **ajustar los pesos de clase** en la función de pérdida de ambos modelos. Esto ayudaría a que la red neuronal y la regresión logística no ignoren la clase minoritaria y mejoren su recall.
+    2.  **Optimización de Hiperparámetros de la Red Neuronal:** Realizar una búsqueda más exhaustiva de los hiperparámetros de la red neuronal (número de capas, neuronas por capa, función de activación, tasa de aprendizaje, regularización como dropout). La red neuronal no muestra sus hiperparámetros, lo que sugiere que podría no estar completamente optimizada, y una mejor configuración podría mejorar su rendimiento general y, potencialmente, su recall.

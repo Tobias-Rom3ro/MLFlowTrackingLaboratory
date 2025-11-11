@@ -4,6 +4,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
 from typing import Dict
+import warnings
+warnings.filterwarnings('ignore')
 
 from ..config import RANDOM_STATE, KerasConfig
 from ..metrics import compute_metrics, save_confusion_matrix_png

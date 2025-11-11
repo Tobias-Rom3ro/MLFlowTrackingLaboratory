@@ -1,0 +1,11 @@
+Aquí tienes un análisis breve de los resultados:
+
+1.  **¿Qué significa un F1-score de 0.7943 considerando el balance de clases en este dataset?**
+    Un F1-score de 0.7943 indica un buen balance entre la precisión y el recall del modelo Logístico para la clase positiva. Considerando que en datasets como QSAR la **clase minoritaria (biodegradable o no biodegradable) suele ser la de mayor interés o estar desequilibrada**, el F1-score es una métrica más fiable que la exactitud (Accuracy) para evaluar el rendimiento, ya que penaliza los modelos que ignoran la clase minoritaria. Un valor de 0.7943 sugiere que el modelo identifica correctamente una buena proporción de casos positivos sin generar demasiados falsos positivos o falsos negativos.
+
+2.  **¿Por qué la red neuronal podría tener un recall de 0.8169 comparado con 0.7887 de regresión logística?**
+    La red neuronal, al ser un modelo no lineal, tiene la capacidad de **capturar patrones más complejos y relaciones no lineales** en los datos que la regresión logística (que es un modelo lineal). Esta mayor complejidad le permite identificar mejor los casos positivos reales (True Positives), resultando en menos falsos negativos y, por ende, un recall más alto. En general, la red neuronal parece ser un modelo más potente y adecuado para este dataset, logrando un mejor rendimiento en todas las métricas.
+
+3.  **Sugiere dos mejoras concretas para optimizar estos modelos en este dataset.**
+    *   **Manejo del Desbalance de Clases:** Si el dataset está desequilibrado (lo cual es común en QSAR), técnicas como **SMOTE (Synthetic Minority Over-sampling Technique)** para sobremuestrear la clase minoritaria, o el uso de pesos de clase (cost-sensitive learning) durante el entrenamiento, podrían mejorar significativamente el rendimiento, especialmente el F1-score y el recall de la clase minoritaria.
+    *   **Optimización Exhaustiva de Hiperparámetros de la Red Neuronal:** Aunque la red neuronal ya superó a la regresión logística, una **búsqueda más exhaustiva de sus hiperparámetros** (número de capas ocultas, número de neuronas por capa, funciones de activación, tasa de aprendizaje, optimizador, regularización como dropout, tamaño de batch) mediante Grid Search, Random Search o Bayesian Optimization, podría exprimir aún más su rendimiento y mejorar sus métricas.

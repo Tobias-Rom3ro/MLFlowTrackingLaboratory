@@ -20,7 +20,7 @@ from .data import (
 )
 from .models import grid_search_logreg, train_and_log_keras
 from .llm import generate_insights
-from .tracking import set_experiment, run, log_artifact, enable_global_autolog
+from .tracking import set_experiment, run, log_artifact, log_metric, enable_global_autolog
 
 
 def main(full: bool = False):

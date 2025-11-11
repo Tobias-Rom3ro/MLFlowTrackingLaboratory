@@ -1,0 +1,11 @@
+Aquí tienes un análisis breve de los resultados:
+
+1.  **¿Qué significa un F1-score de 0.7943 considerando el balance de clases en este dataset?**
+    Un F1-score de 0.7943 indica un buen equilibrio entre precisión y recall para la clase positiva. Considerando el balance de clases, este valor sugiere que el modelo no se está apoyando únicamente en la clase mayoritaria para obtener una buena exactitud, sino que es capaz de identificar correctamente una proporción significativa de la clase minoritaria (o de interés) con una precisión aceptable. Es una métrica robusta en presencia de desbalance de clases, lo que implica que el modelo tiene un rendimiento decente incluso si las clases no están igualmente representadas.
+
+2.  **¿Por qué la red neuronal podría tener un recall de 0.8169 comparado con 0.7887 de regresión logística?**
+    La Red Neuronal, al ser un modelo no lineal y con mayor capacidad para aprender patrones complejos y relaciones no lineales en los datos, es probable que pueda identificar un mayor número de instancias positivas (verdaderos positivos) que la Regresión Logística (un modelo lineal). Esto se traduce en menos falsos negativos y, por lo tanto, un recall más alto, ya que la NN puede capturar características y combinaciones de características más sutiles que la regresión logística no puede.
+
+3.  **Sugiere dos mejoras concretas para optimizar estos modelos en este dataset.**
+    1.  **Estrategias para el desbalance de clases:** Aplicar técnicas como SMOTE, ADASYN (para oversampling de la minoritaria) o NearMiss (para undersampling de la mayoritaria), o ajustar pesos de clases en la función de pérdida del modelo para dar más importancia a la clase minoritaria. Esto podría mejorar aún más el F1-score y el recall si el dataset QSAR Biodegradation está desbalanceado.
+    2.  **Optimización de la arquitectura de la Red Neuronal:** Realizar una búsqueda más exhaustiva de hiperparámetros específicos de la NN (número de capas ocultas, neuronas por capa, funciones de activación, optimizador, tasa de aprendizaje, y regularización como dropout) mediante técnicas como Grid Search o Random Search. Esto permitiría afinar el modelo para capturar mejor la complejidad de los datos.

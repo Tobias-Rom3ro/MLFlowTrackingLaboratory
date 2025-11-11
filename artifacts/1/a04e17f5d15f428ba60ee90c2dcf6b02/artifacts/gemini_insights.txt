@@ -1,0 +1,14 @@
+Aquí tienes un análisis breve de los resultados:
+
+1.  **¿Qué significa un F1-score de 0.7943 considerando el balance de clases en este dataset?**
+    Un F1-score de 0.7943 es un resultado sólido, indicando un buen equilibrio entre precisión y recall. Dado que el F1-score es una métrica robusta para datasets con desbalance de clases, este valor sugiere que el modelo no solo predice bien la clase mayoritaria (si la hubiera), sino que también es capaz de identificar la clase minoritaria de manera efectiva, sin generar demasiados falsos positivos o falsos negativos.
+
+2.  **¿Por qué la red neuronal podría tener un recall de 0.7324 comparado con 0.7887 de regresión logística?**
+    La red neuronal podría tener un recall más bajo por varias razones:
+    *   **Umbral de clasificación:** La NN podría ser más "conservadora" en sus predicciones de la clase positiva, es decir, solo clasifica una instancia como positiva si tiene una confianza muy alta, resultando en más falsos negativos.
+    *   **Sobreajuste (Overfitting):** La red neuronal, al ser un modelo más complejo, podría estar sobreajustándose a los datos de entrenamiento y no generalizando tan bien a la clase positiva en los datos de prueba.
+    *   **Hiperparámetros no óptimos:** La arquitectura o los hiperparámetros de la NN (número de capas, neuronas, función de activación, learning rate, regularización) podrían no estar optimizados para capturar las características de la clase positiva de manera efectiva.
+
+3.  **Sugiere dos mejoras concretas para optimizar estos modelos en este dataset.**
+    1.  **Ajuste del umbral de clasificación:** Especialmente para la Red Neuronal, se podría optimizar el umbral de probabilidad para clasificar una instancia como positiva, más allá del 0.5 por defecto. Al bajar ligeramente el umbral, se podría mejorar el recall (identificando más positivos reales) posiblemente con una pequeña penalización en la precisión, buscando un mejor equilibrio deseado.
+    2.  **Técnicas de balanceo de clases:** Si existe un desbalance significativo en el dataset (común en QSAR), aplicar técnicas como SMOTE (Synthetic Minority Over-sampling Technique) para generar instancias sintéticas de la clase minoritaria, o usar pesos de clase (`class_weight`) durante el entrenamiento del modelo, podría mejorar el rendimiento general, en particular el recall y el F1-score de la clase minoritaria.
